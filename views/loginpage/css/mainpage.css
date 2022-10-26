@@ -1,0 +1,43 @@
+* {
+  font-family: "Courier New", Courier, monospace;
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+.defaultpagenone {
+  display: none;
+}
+
+.fullwidth {
+  width: 100%;
+  overflow-x: hidden;
+}
+
+.fullheight {
+  height: 100%;
+  overflow-y: hidden;
+}
+
+.fullheightvh {
+  height: 100vh;
+  overflow-y: hidden;
+}
+
+.flexcontent {
+  display: flex;
+  align-items: center;
+}
+
+.flexbox {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.flexdirec-col {
+  flex-direction: column;
+}
+.flexdirec-row {
+  flex-direction: row;
+}
