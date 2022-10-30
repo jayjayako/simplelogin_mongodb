@@ -36,32 +36,12 @@ router.use(auth);
 
 ///////////////// express with socket autologout ////////////
 router.use((req, res, next) => {
-  function autologout(socketid) {
-    if (socketid == req.app.socket.id) {
-      updateuser1loggedin(req.session.userid, "offline");
-      req.session.destroy();
-      console.log("User Logged Out");
-    }
-    return;
-  }
   updateuser1loggedin(req.session.userid, "online");
-  req.app.socket.on("disconnect", async () => {
-    setTimeout(autologout, 5000, req.app.socket.id);
-    console.log("Disconnected: inside " + req.app.socket.id);
-    req.app.socket.disconnect(true);
-  });
-
-  req.app.socket.on("error", async () => {
-    req.app.socket.disconnect(true);
-    req.session.destroy();
-    res.send(JSON.stringify([{ id: "invalid" }]));
-    res.end();
-  });
   next();
 });
 
 /////////////////////// for dashboard page ///////////////////
-router.get("/dashboard", (req, res) => {
+router.get("/dashboard", async (req, res) => {
   try {
     console.log(
       "Connected: " + req.app.socket.id + " node1 \nmy ip is " + req.ip

@@ -30,9 +30,12 @@ const userSchema = new mongoose.Schema({
   },
   connection: {
     type: String,
-    required: true,
     min: 1,
     max: 10,
+  },
+  socket: {
+    type: String,
+    min: 1,
   },
 });
 

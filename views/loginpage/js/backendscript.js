@@ -1,3 +1,4 @@
+var errortimeout = 0;
 async function login() {
   let username = document.getElementById("username").value;
   let password = document.getElementById("password").value;
@@ -57,7 +58,13 @@ async function checkuser() {
     if (myresult[0].id == "loggedin") {
       location.replace("../dashboardpage");
     }
+    errortimeout = 0;
   } catch (error) {
-    alert("Error occured hays");
+    errortimeout += 1;
+    if (errortimeout >= 5) {
+      alert("Opps Network Error!");
+    } else {
+      setTimeout(checkuser, 1000);
+    }
   }
 }

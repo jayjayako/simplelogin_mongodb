@@ -10,8 +10,7 @@ const Joi = require("joi");
 
 const bcrypt = require("bcrypt");
 
-const { user1registerauth } = require("./user1");
-const { user1registerinsert } = require("./user1");
+const { user1registerauth, user1registerinsert } = require("./user1");
 
 router.use(upload.none(), async (req, res, next) => {
   var schema = Joi.object().keys({
@@ -61,6 +60,7 @@ router.use(async (req, res) => {
     lastname: last,
     firstname: first,
     connection: "offline",
+    socket: "",
   };
   user1registerinsert(post);
   res.send(JSON.stringify([{ id: "registered" }]));

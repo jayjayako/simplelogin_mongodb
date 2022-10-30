@@ -1,7 +1,9 @@
+var errortimeout = 0;
+
 //////////////// for socket connection /////////////////
 const socket = io();
 
-socket.on("chat-message", (msg) => {
+socket.on("chat-message", msg => {
   console.log(msg);
 });
 
@@ -25,8 +27,14 @@ async function dashboard() {
         "titleid"
       ).innerHTML = `Welcome ${myresult[0].name}`;
     }
+    errortimeout = 0;
   } catch (error) {
-    console.log("Error Occured");
+    errortimeout += 1;
+    if (errortimeout >= 5) {
+      alert("Opps Network Error!");
+    } else {
+      setTimeout(dashboard, 300);
+    }
   }
 }
 
@@ -58,10 +66,10 @@ function logout() {
   fetch("/api/authentication/logout", {
     method: "GET",
   })
-    .then((res) => {
+    .then(res => {
       console.log(res);
     })
-    .catch((err) => {
+    .catch(err => {
       console.log(err);
     });
 

@@ -30,7 +30,8 @@ function includeHTML() {
   }
 }
 
-window.addEventListener("load", function () {
+window.addEventListener("error", function () {
   includeHTML();
 });
+
 includeHTML();

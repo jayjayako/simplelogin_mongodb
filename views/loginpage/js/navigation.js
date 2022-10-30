@@ -20,3 +20,7 @@ function page2() {
 }
 
 setTimeout(page1, 200); // always set defaullt page
+
+window.addEventListener("error", function () {
+  setTimeout(page1, 200);
+});

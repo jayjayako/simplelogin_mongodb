@@ -5,3 +5,7 @@ function page1() {
 }
 
 setTimeout(page1, 200);
+
+window.addEventListener("error", function () {
+  setTimeout(page1, 200);
+});
